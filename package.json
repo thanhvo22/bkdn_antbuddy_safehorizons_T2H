@@ -1,0 +1,22 @@
+{
+  "name": "git_training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhvo22/bkdn_antbuddy_safehorizons_T2H.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thanhvo22/bkdn_antbuddy_safehorizons_T2H/issues"
+  },
+  "homepage": "https://github.com/thanhvo22/bkdn_antbuddy_safehorizons_T2H#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
