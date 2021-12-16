@@ -14,7 +14,7 @@ app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-www-form-urlencoded
 
 
-app.use('/category', categoryRouter);
+app.use('/api/category', categoryRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
