@@ -1,20 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Categories = require('../models/category.model');
+const categoryController = require('../controllers/category.controller');
 
-router.get('/', async (req, res) => {
-    try {
-        const categories = await Categories.find();
-        res.status(201).json({
-            success : true,
-            data : categories
-        });
-    } catch (error) {
-        res.status(400).json({success: false});
-        console.log(error);
-    }
-    
-});
+router.get('/', categoryController.index);
 
 router.get('/:id', async (req, res) => {
     let id = req.params.id;

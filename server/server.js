@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
-const categoryRouter = require('./routes/category.route');
+const categoryRouter = require('./routes/category.router');
+const customerRouter = require('./routes/customer.router');
 const db = require('./connect');
 
 db.connect();
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-ww
 
 
 app.use('/api/category', categoryRouter);
+app.use('/api/customer', customerRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
