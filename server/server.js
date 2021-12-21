@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 
 const categoryRouter = require('./routes/category.router');
 const customerRouter = require('./routes/customer.router');
+const employeeRouter = require('./routes/employee.router');
+
 const db = require('./connect');
 
 db.connect();
@@ -17,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-ww
 
 app.use('/api/category', categoryRouter);
 app.use('/api/customer', customerRouter);
+app.use('/api/employee', employeeRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
