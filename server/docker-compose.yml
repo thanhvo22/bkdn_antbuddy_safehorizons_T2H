@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  app:
+    container_name: train_js
+    restart: always 
+    build: . 
+    ports: 
+      - "88:9000"
+    links:
+      - mongo
+    networks:
+      - common
+    environment:
+      MONGO_URL: mongodb://mongo/train_js
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    volumes:
+    - ./data:/data/db
+    restart: always
+    ports:
+    - "27017:27017"
+    networks:
+      - common
+    
+
+networks:
+  common: 
+
+
+
