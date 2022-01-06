@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -15,19 +15,17 @@ function Login() {
 
   const onFormSubmit = async (event) => {
     event.preventDefault();
-    await axios.post("http://localhost:9000/auth/login", {
-      email,
-      matKhau      
-    }).then(res => {
-      console.log(res);
-      window.localStorage.setItem('user', res.data.user.email);
-      setRedirect(true);
-    });
-
-
-  }
-
-
+    await axios
+      .post("http://localhost:9000/auth/login", {
+        email,
+        matKhau,
+      })
+      .then((res) => {
+        console.log(res);
+        window.localStorage.setItem("user", res.data.user.email);
+        setRedirect(true);
+      });
+  };
 
   if (redirect) {
     return <Redirect to="/" />;
@@ -65,8 +63,8 @@ function Login() {
           </Form>
           <p>
             Don't have an account?
-            <Link to='/register'>
-              <Button variant='info' size='sm' className='ml-2'>
+            <Link to="/register">
+              <Button variant="info" size="sm" className="ml-2">
                 Register
               </Button>
             </Link>

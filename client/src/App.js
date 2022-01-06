@@ -4,8 +4,10 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from './component/auth/Login';
 import Home from './component/layout/Home';
 import RegisterForm from './component/auth/RegisterForm';
-import Customer from './component/auth/Customer';
+import Customer from './component/admin/Customer';
 import Main from './component/layout/Main';
+import EditCustomer from './component/admin/EditCustomer';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={RegisterForm} />
         <Route exact path='/customer' component={Customer} />
+        <Route exact path='/customer/edit/:id' component={EditCustomer} />
       </Switch>
     </Router>
   );
