@@ -36,14 +36,27 @@ function Main() {
   };
   return (
     <div>
-      <Navbar color="secondary" container dark expand fixed="" full>
+      <Navbar color="secondary"
+    container
+    dark
+    expand
+    fixed=""
+    full>
         <NavbarBrand href="/">T2H </NavbarBrand>
         <NavbarToggler onClick={function noRefCheck() {}} />
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/product">Product</NavLink>
+              <NavLink href="/admin/customer">Customer</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/admin/products">Products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/admin/statistics">Statistics</NavLink>
+            </NavItem>
+
+            
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">
                 GitHub

@@ -8,9 +8,11 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
-import Main from "../layout/Main";
-function Customer() {
-  const [customers, setCustomers] = useState([]);
+//import Main from "../layout/Main";
+import Home_admin from "../Home_admin";
+
+function Home_Products() {
+  const [products, setProducts] = useState([]);
 
   // Modal open state
   const [modal, setModal] = React.useState(false);
@@ -19,43 +21,50 @@ function Customer() {
   const toggle = () => setModal(!modal);
   //get all user!
   useEffect(() => {
-    axios.get("http://localhost:9000/api/customer").then((res) => {
-      setCustomers(res.data.data);
+    axios.get("http://localhost:9000/api/product").then((res) => {
+      setProducts(res.data.data);
+      console.log(res);
     });
   }, []);
-
   return (
     <div>
-      <Main />
-      <Table>
+      <Home_admin />
+      
+      <div className="container" >
+      <Button color="success" size="lg" href={`/admin/products/create`}>+ Product</Button>
+      <Table >
         <thead>
           <tr>
             <th>#</th>
-            <th>CustomerName</th>
-            <th>ContactName</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Country</th>
+            <th>Product Name</th>
+            <th>SupplierID</th>
+            <th>CategoryName</th>
+            <th>Unit</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>
-          {customers.map((customer) => (
+          {products.map((product) => (
             <tr>
-              <th scope="row">{customer.index}</th>
-              <td>{customer.CustomerName}</td>
-              <td>{customer.ContactName}</td>
-              <td>{customer.Address}</td>
-              <td>{customer.City}</td>
-              <td>{customer.Country}</td>
+              <th scope="row">{product.index}</th>
+              <td>{product.ProductName}</td>
+              <td>
+                {product.SupplierID ? product.SupplierID.ContactName : "NULL"}
+              </td>
+              <td>
+                {product.CategoryID ? product.CategoryID.CategoryName : "null"}
+              </td>
+              <td>{product.Unit}</td>
+              <td>{product.Price} $</td>
               <td>
                 <Button
                   color="primary"
                   outline
-                  href={`/customer/edit/${customer._id}`}
+                  href={`/product/edit/${product._id}`}
                 >
                   Edit
                 </Button>
-                <Button color="primary" outline onClick={toggle}>
+                <Button color="danger" outline onClick={toggle}>
                   {" "}
                   Delete
                 </Button>
@@ -73,7 +82,9 @@ function Customer() {
           ))}
         </tbody>
       </Table>
+      </div>
     </div>
   );
 }
-export default Customer;
+
+export default Home_Products;

@@ -1,7 +1,7 @@
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Main from "../layout/Main";
+import Main from "../../layout/Main";
 import { Redirect } from "react-router-dom";
 
 function EditCustomer({ match }) {
@@ -42,7 +42,7 @@ function EditCustomer({ match }) {
   return (
     <div>
       <Main />
-      <div fill vertical>
+      <div fill vertical className="container">
         <Form onSubmit={onSubmit} >
           <Row form>
             <Col md={6}>

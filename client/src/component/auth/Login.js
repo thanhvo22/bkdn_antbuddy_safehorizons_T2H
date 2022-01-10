@@ -22,6 +22,7 @@ function Login() {
       })
       .then((res) => {
         console.log(res);
+        //window.sessionStorage.setItem('gmail',res.data.user.email);
         window.localStorage.setItem("user", res.data.user.email);
         setRedirect(true);
       });
