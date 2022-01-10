@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
+    CustomerID: { 
+        type: Schema.Types.ObjectId,
+        ref: "TaiKhoan"
+    },
     CustomerName: { type: String, maxlength: 255 },
     ContactName: { type: String, maxlength: 50 },
     Address: { type: String, maxlength: 255 },

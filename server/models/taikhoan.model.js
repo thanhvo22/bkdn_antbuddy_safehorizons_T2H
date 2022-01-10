@@ -9,6 +9,7 @@ const TaiKhoanSchema = new Schema({
   loaiTaiKhoan: {
     type: String,
     enum: ["Admin", "Employee", "Customer"],
+    default: "Customer"
   },
   gioiTinh: {
     type: String,
