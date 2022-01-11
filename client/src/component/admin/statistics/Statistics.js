@@ -12,7 +12,7 @@ import {
 import Home_admin from "../Home_admin";
 
 function Home_Products() {
-  const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   // Modal open state
   const [modal, setModal] = React.useState(false);
@@ -21,46 +21,69 @@ function Home_Products() {
   const toggle = () => setModal(!modal);
   //get all user!
   useEffect(() => {
-    axios.get("http://localhost:9000/api/product").then((res) => {
-      setProducts(res.data.data);
+    axios.get("http://localhost:9000/api/order").then((res) => {
+      setOrders(res.data.data);
       console.log(res);
     });
   }, []);
+
+  const pendingOrder = async () => {
+    await axios.get("http://localhost:9000/api/order").then((res) => {
+      setOrders(res.data.data.filter(item => item.Status==="pending" ));
+      console.log(res);
+    });
+  }
+
+  const rejectOrder = async () => {
+    await axios.get("http://localhost:9000/api/order").then((res) => {
+      setOrders(res.data.data.filter(item => item.Status==="reject" ));
+      console.log(res);
+    });
+  }
+
+  const acceptOrder = async () => {
+    await axios.get("http://localhost:9000/api/order").then((res) => {
+      setOrders(res.data.data.filter(item => item.Status==="accept" ));
+      console.log(res);
+    });
+  }
   return (
     <div>
       <Home_admin />
       
       <div className="container" >
-      <Button color="primary"  href={`/admin/products/create`}>Export</Button>
+      <Button color="primary" onClick={rejectOrder} >Reject</Button>
+      <Button color="info" onClick={acceptOrder} >Accept</Button>
+      <Button color="danger" onClick={pendingOrder} >Pending</Button>
       <Table >
         <thead>
           <tr>
             <th>#</th>
-            <th>Product Name</th>
-            <th>SupplierID</th>
-            <th>CategoryName</th>
-            <th>Unit</th>
-            <th>Price</th>
+            <th>CustomerID Name</th>
+            <th>EmployeeID</th>
+            <th>Products</th>
+            <th>ShipperID</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {orders.map((order) => (
             <tr>
-              <th scope="row">{product.index}</th>
-              <td>{product.ProductName}</td>
+              <th scope="row">{order.index}</th>
+              <td>{order.CustomerID ? order.CustomerID.CustomerName : "Eror"}</td>
               <td>
-                {product.SupplierID ? product.SupplierID.ContactName : "NULL"}
+                {order.EmployeeID ? order.EmployeeID.FirstName : "Eror"}
               </td>
               <td>
-                {product.CategoryID ? product.CategoryID.CategoryName : "null"}
+                {order.Products ? order.Products[0].ProductID.ProductName : "null"}
               </td>
-              <td>{product.Unit}</td>
-              <td>{product.Price} $</td>
+              <td>{order.ShipperID? order.ShipperID.ShipperName : "Null"}</td>
+              <td>{order.Status}</td>
               <td>
                 <Button
                   color="primary"
                   outline
-                  href={`/product/edit/${product._id}`}
+                  href={`/product/edit/${order._id}`}
                 >
                   Edit
                 </Button>

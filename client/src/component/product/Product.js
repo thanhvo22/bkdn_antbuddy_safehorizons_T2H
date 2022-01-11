@@ -5,9 +5,7 @@ import {
   CardSubtitle,
   CardText,
   Button,
-  Toast,
-  ToastHeader,
-  ToastBody,
+  Input,
 } from "reactstrap";
 import Main from "../layout/Main";
 import React, { useState, useEffect } from "react";
@@ -23,6 +21,13 @@ function Product() {
       console.log(res);
     });
   }, []);
+
+  const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState("");
+  const addToCart = async (item) => {
+    setCart([...cart, {...item,quantity}]);
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
   return (
     <div>
@@ -44,19 +49,14 @@ function Product() {
               {product.Price} $
             </CardSubtitle>
             <CardSubtitle>
-              <div>
-                <Button color="primary" onClick={function noRefCheck() {}}>
+            
+            <Button
+                  color="primary"
+                  outline
+                  href={`/product/addtocart/${product._id}`}
+                >
                   Add To Cart
                 </Button>
-                <br />
-                <br />
-                <Toast isOpen={false}>
-                  <ToastHeader toggle={function noRefCheck() {}}>
-                    Toast title
-                  </ToastHeader>
-                  <ToastBody>SoLuong</ToastBody>
-                </Toast>
-              </div>
             </CardSubtitle>
           </CardBody>
         </Card>

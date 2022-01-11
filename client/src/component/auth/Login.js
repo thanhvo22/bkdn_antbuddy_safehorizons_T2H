@@ -22,7 +22,7 @@ function Login() {
       })
       .then((res) => {
         console.log(res);
-        //window.sessionStorage.setItem('gmail',res.data.user.email);
+        window.localStorage.setItem('id',res.data.user._id);
         window.localStorage.setItem("user", res.data.user.email);
         setRedirect(true);
       });

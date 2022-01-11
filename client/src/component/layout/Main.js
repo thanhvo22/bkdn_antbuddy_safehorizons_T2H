@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 //import Cookies from "js-cookie";
 //import axios from "axios";
 import {
@@ -16,8 +16,16 @@ import {
   NavbarText,
 } from "reactstrap";
 import { BsFillCartCheckFill } from "react-icons/bs";
+import React, { useState } from "react";
+
+// import Product from '../product/Product';
 
 function Main() {
+  const [cartLength, setCartLength] = useState(() => {
+    const test1 = localStorage.getItem("cart");
+    const test2 = JSON.parse(test1);
+    return test2.length;
+  });
   const user = window.localStorage.getItem("user");
   if (!user) {
     return <Redirect to="/login" />;
@@ -34,6 +42,7 @@ function Main() {
       credentials: "include",
     });
   };
+
   return (
     <div>
       <Navbar color="secondary" container dark expand fixed="" full>
@@ -51,7 +60,7 @@ function Main() {
             </NavItem>
           </Nav>
           {/* giohang */}
-          <BsFillCartCheckFill />
+          <Link  to={'/cart'}> <BsFillCartCheckFill  /> Cart{cartLength} </Link>
           {/* ... */}
           <NavbarText>
             <UncontrolledDropdown>

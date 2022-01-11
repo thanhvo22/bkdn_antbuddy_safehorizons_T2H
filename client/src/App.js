@@ -11,6 +11,8 @@ import Product from "./component/product/Product";
 import Home_admin from './component/admin/Home_admin';
 import Home_Products from "./component/admin/products/Home_Products";
 import Statistics from './component/admin/statistics/Statistics';
+import AddToCart from './component/user/AddToCart';
+import ListCart from "./component/user/ListCart";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/product" component={Product} />
+        <Route exact path="/product/addtocart/:id" component={AddToCart} />
+        <Route exact path="/cart" component={ListCart} />
 
         {/* admin */}
         <Route exact path="/admin" component={Home_admin} />
