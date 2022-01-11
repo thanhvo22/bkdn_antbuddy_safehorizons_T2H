@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
     });
     res.send({
       message: "Login Success",
-      user
+      user,
     });
   } catch (error) {
     res.send(error);

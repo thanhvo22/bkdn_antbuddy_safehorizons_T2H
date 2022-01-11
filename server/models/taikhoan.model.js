@@ -9,7 +9,7 @@ const TaiKhoanSchema = new Schema({
   loaiTaiKhoan: {
     type: String,
     enum: ["Admin", "Employee", "Customer"],
-    default: "Customer"
+    default: "Customer",
   },
   gioiTinh: {
     type: String,
@@ -24,7 +24,11 @@ const TaiKhoanSchema = new Schema({
   matKhau: {
     type: String,
     require: true,
-  }
+  },
+  CustomerID: {
+    type: Schema.Types.ObjectId,
+    ref: "Customer",
+  },
 });
 
 module.exports = mongoose.model("TaiKhoan", TaiKhoanSchema);

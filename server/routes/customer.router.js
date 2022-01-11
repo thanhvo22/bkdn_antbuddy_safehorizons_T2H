@@ -4,7 +4,7 @@ const Customer = require('../models/customer.model');
 
 router.get('/', async (req, res) => {
     try {
-        const customer = await Customer.find();
+        const customer = await Customer.find().populate(['CustomerID']);
         res.status(201).json({
             success : true,
             data : customer
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
-    const customer = await Customer.findOne({_id: id});
+    const customer = await Customer.findOne({_id: id}).populate(['CustomerID']);
     res.json({
         success : true,
         data : customer
