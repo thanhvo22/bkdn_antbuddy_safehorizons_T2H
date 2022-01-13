@@ -4,7 +4,7 @@ const router = express.Router();
 
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
-const taiKhoan = require("../models/taikhoan.model");
+const Customer = require('../models/customer.model');
 
 router.post("/login", async (req, res) => {
   const { email, matKhau } = req.body;
@@ -12,7 +12,7 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ message: "fail to login" });
   }
   try {
-    const user = await taiKhoan.findOne({ email });
+    const user = await Customer.findOne({ email });
     if (!user) {
       return res.json({ message: "user invalid" });
     }
